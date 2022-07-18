@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+ 
+        <title>Tuts+ Chat Application</title>
+        <meta name="description" content="Tuts+ Chat Application" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+    <?php
+    if(!isset($_SESSION['name'])){
+        loginForm();
+    }
+    else {
+    ?>
+        <div id="wrapper">
+            <div id="menu">
+                <p class="welcome">Welcome, <b><?php echo $_SESSION['name']; ?></b></p>
+                <p class="logout"><a id="exit" href="#">Exit Chat</a></p>
+            </div>
+ 
+            <div id="chatbox">
+              <div id="demo_2">
+    </div>
+           
+            </div>
+ 
+            <div  id ="message" >
+                <input name="usermsg" type="text" id="fname" />
+                <button  onclick="senddata()" name="submitmsg" type="submit" id="submitmsg" value="Send" >ارسال</button>
+            </div>
+        </div>
+
+  <script>
+  function senddata(){
+  const  name_1 = document.getElementById("fname").value;
+  //const  name_2 = document.getElementById("lname").value;
+  //"&lname="+name_2
+  console.log(fname);
+  
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    document.getElementById("demo").innerHTML = this.responseText;
+  }
+  xhttp.open("POST", "asd.php");
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("fname="+name_1);}
+  
+  
+  setInterval(function() { const xhttp_2 = new XMLHttpRequest();
+  xhttp_2.onload = function() {
+    document.getElementById("demo_2").innerHTML = this.responseText;
+  }
+  xhttp_2.open("GET", "select.php");
+  xhttp_2.send();}, 5000);
+   
+
+  </script>
+
+</body>
+</html>
